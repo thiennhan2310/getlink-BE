@@ -1,0 +1,19 @@
+version: '3'
+networks:
+  local:
+    driver: bridge
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    networks: 
+      - local
+  app:
+    build: ./
+    container_name: app
+    working_dir: /app
+    networks:
+      - local
